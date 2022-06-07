@@ -15,10 +15,10 @@ public class CreateLocationService implements CreateLocationUseCase {
     private final LocationRepository repository;
 
     @Override
-    public Long createNewLocation(CreateLocationCommand command) {
+    public Location createNewLocation(CreateLocationCommand command) {
         Location location = new Location(command.getDeviceId(), command.getLatitude(), command.getLongitude());
         Location saved = repository.save(location);
         log.info("Saved new location with id: " + saved.getId());
-        return saved.getId();
+        return saved;
     }
 }

@@ -30,15 +30,15 @@ class CreateLocationServiceTest {
         CreateLocationCommand location = givenLocation();
 
         //THEN
-        Long locationId = service.createNewLocation(location);
+        Location saved = service.createNewLocation(location);
 
         //WHEN
-        Optional<Location> foundLocation = repository.findById(locationId);
+        Optional<Location> foundLocation = repository.findById(saved.getId());
 
         if (foundLocation.isPresent()) {
-            assertEquals(location.getDeviceId(), foundLocation.get().getDeviceId());
-            assertEquals(location.getLongitude(), foundLocation.get().getLongitude());
-            assertEquals(location.getLatitude(), foundLocation.get().getLatitude());
+            assertEquals(saved.getDeviceId(), foundLocation.get().getDeviceId());
+            assertEquals(saved.getLongitude(), foundLocation.get().getLongitude());
+            assertEquals(saved.getLatitude(), foundLocation.get().getLatitude());
         }
     }
 
