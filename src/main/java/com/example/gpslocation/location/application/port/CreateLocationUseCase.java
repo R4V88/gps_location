@@ -4,7 +4,7 @@ import lombok.Value;
 
 public interface CreateLocationUseCase {
 
-    void createNewLocation(CreateLocationCommand command);
+    Long createNewLocation(CreateLocationCommand command);
 
     @Value
     class CreateLocationCommand {
