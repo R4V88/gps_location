@@ -43,6 +43,6 @@ class CreateLocationServiceTest {
     }
 
     private CreateLocationCommand givenLocation() {
-        return new CreateLocationCommand(123412L, 213324L, 54314L);
+        return new CreateLocationCommand(123412L, "213324", "54314");
     }
 }

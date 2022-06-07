@@ -34,11 +34,11 @@ public class Location {
 
     Long deviceId;
 
-    Long latitude;
+    String latitude;
 
-    Long longitude;
+    String longitude;
 
-    public Location(Long deviceId, Long latitude, Long longitude) {
+    public Location(Long deviceId, String latitude, String longitude) {
         this.deviceId = deviceId;
         this.latitude = latitude;
         this.longitude = longitude;

@@ -10,7 +10,7 @@ public interface CreateLocationUseCase {
     @Value
     class CreateLocationCommand {
         Long deviceId;
-        Long latitude;
-        Long longitude;
+        String latitude;
+        String longitude;
     }
 }
