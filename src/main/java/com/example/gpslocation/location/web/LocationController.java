@@ -49,9 +49,11 @@ public class LocationController {
         Long deviceId;
         @NotBlank(message = "Please provide valid latitude")
         @Size(min = 9, message = "Latitude must contain minimum 9 digits")
+        @DecimalMin("0.00")
         String latitude;
         @NotBlank(message = "Please provide valid longitude")
         @Size(min = 9, message = "Longitude  must contain minimum 9 digits")
+        @DecimalMin("0.00")
         String longitude;
 
         CreateLocationCommand toCreateLocationCommand() {

@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @EntityListeners({AuditingEntityListener.class})
 public class Location {

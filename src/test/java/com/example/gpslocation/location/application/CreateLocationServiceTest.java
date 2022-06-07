@@ -13,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @AutoConfigureTestDatabase
@@ -27,22 +28,45 @@ class CreateLocationServiceTest {
     @Test
     void createNewLocation() {
         //GIVEN
-        CreateLocationCommand location = givenLocation();
-
-        //THEN
-        Location saved = service.createNewLocation(location);
+        CreateLocationCommand command = givenLocationCommand();
 
         //WHEN
-        Optional<Location> foundLocation = repository.findById(saved.getId());
+        Location saved = service.createNewLocation(command);
+        final Long locationId = saved.getId();
 
-        if (foundLocation.isPresent()) {
-            assertEquals(saved.getDeviceId(), foundLocation.get().getDeviceId());
-            assertEquals(saved.getLongitude(), foundLocation.get().getLongitude());
-            assertEquals(saved.getLatitude(), foundLocation.get().getLatitude());
-        }
+        //THEN
+        Optional<Location> foundLocation = repository.findById(locationId);
+
+        assertEquals(command.getDeviceId(), foundLocation.get().getDeviceId());
+        assertEquals(command.getLongitude(), foundLocation.get().getLongitude());
+        assertEquals(command.getLatitude(), foundLocation.get().getLatitude());
+        assertNotNull(foundLocation.get().getId());
+        assertNotNull(foundLocation.get().getCreatedAt());
     }
 
-    private CreateLocationCommand givenLocation() {
-        return new CreateLocationCommand(123412L, "213324", "54314");
+    @Test
+    void savedLocationShouldBeEqualsToFound() {
+        //GIVEN
+        Location givenLocation = givenLocation();
+        final Long locationId = givenLocation.getId();
+
+        //WHEN
+        Optional<Location> foundLocation = repository.findById(locationId);
+
+        //THEN
+        assertEquals(givenLocation.getDeviceId(), foundLocation.get().getDeviceId());
+        assertEquals(givenLocation.getLongitude(), foundLocation.get().getLongitude());
+        assertEquals(givenLocation.getLatitude(), foundLocation.get().getLatitude());
+        assertNotNull(foundLocation.get().getId());
+        assertNotNull(foundLocation.get().getCreatedAt());
+    }
+
+    private CreateLocationCommand givenLocationCommand() {
+        return new CreateLocationCommand(123412L, "213324333", "543143333");
+    }
+
+    private Location givenLocation() {
+        Location location = new Location(123412L, "213324333", "543143333");
+        return repository.save(location);
     }
 }
