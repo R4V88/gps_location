@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -36,4 +35,10 @@ public class Location {
     Long latitude;
 
     Long longitude;
+
+    public Location(Long deviceId, Long latitude, Long longitude) {
+        this.deviceId = deviceId;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }
