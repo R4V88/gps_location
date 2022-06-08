@@ -81,7 +81,12 @@ class LocationControllerWebTest {
     }
 
     private String givenLocation() {
-        return givenLocation();
+        return """
+                {
+                     "deviceId":32124,
+                     "latitude":"459132539",
+                     "longitude":"35433"
+                }
+                 """;
     }
-
 }
