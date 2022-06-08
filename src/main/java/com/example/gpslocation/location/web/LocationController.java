@@ -34,7 +34,8 @@ public class LocationController {
     @PostMapping()
     public ResponseEntity<?> createLocation(@Valid @RequestBody RestLocationCommand command) {
         Location location = service.createNewLocation(command.toCreateLocationCommand());
-        return ResponseEntity.created(toUri(location.getId())).build();
+        Long id = location.getId();
+        return ResponseEntity.created(toUri(id)).build();
     }
 
     private URI toUri(Long id) {
