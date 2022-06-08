@@ -31,7 +31,7 @@ class LocationControllerWebTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                 )
-        //THEN
+                //THEN
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -46,7 +46,7 @@ class LocationControllerWebTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                 )
-        //THEN
+                //THEN
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 

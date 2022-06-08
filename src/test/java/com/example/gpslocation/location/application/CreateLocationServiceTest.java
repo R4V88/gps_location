@@ -45,7 +45,7 @@ class CreateLocationServiceTest {
     }
 
     @Test
-    void savedLocationShouldBeEqualsToFound() {
+    void savedLocationShouldBeEqualToFound() {
         //GIVEN
         Location givenLocation = givenLocation();
         final Long locationId = givenLocation.getId();
@@ -59,6 +59,19 @@ class CreateLocationServiceTest {
         assertEquals(givenLocation.getLatitude(), foundLocation.get().getLatitude());
         assertNotNull(foundLocation.get().getId());
         assertNotNull(foundLocation.get().getCreatedAt());
+    }
+
+    @Test
+    void tooLongLongitudeAndLatitudeWillBeShortened() {
+        //GIVEN
+        CreateLocationCommand command = new CreateLocationCommand(123412L, "21332433242352343", "543143333242341243");
+
+        //WHEN
+        final Location newLocation = service.createNewLocation(command);
+
+        //THEN
+        assertEquals("213324332", newLocation.getLatitude());
+        assertEquals("543143333", newLocation.getLongitude());
     }
 
     private CreateLocationCommand givenLocationCommand() {
